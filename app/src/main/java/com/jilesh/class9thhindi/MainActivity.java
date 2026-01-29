@@ -29,78 +29,59 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Image Slider
         ImageSlider imageSlider = findViewById(R.id.image_slider);
-
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.img1, ScaleTypes.CENTER_CROP));
         slideModels.add(new SlideModel(R.drawable.img2, ScaleTypes.CENTER_CROP));
         slideModels.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_CROP));
-
         imageSlider.setImageList(slideModels, ScaleTypes.CENTER_CROP);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView cardGadya = findViewById(R.id.cardGadya);
 
-        cardGadya.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GadyaKhandActivity.class);
-            startActivity(intent);
-        });
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) CardView cardKavya = findViewById(R.id.cardKavya);
+        // Cards
+        findViewById(R.id.cardGadya).setOnClickListener(v ->
+                startActivity(new Intent(this, GadyaKhandActivity.class)));
 
-        cardKavya.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, KavyaKhandActivity.class);
-            startActivity(intent);
-        });
-        CardView cardSanskrit = findViewById(R.id.cardSanskrit);
+        findViewById(R.id.cardKavya).setOnClickListener(v ->
+                startActivity(new Intent(this, KavyaKhandActivity.class)));
 
-        cardSanskrit.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SanskritKhandActivity.class);
-            startActivity(intent);
-        });
-       CardView cardRate = findViewById(R.id.cardRate);
+        findViewById(R.id.cardSanskrit).setOnClickListener(v ->
+                startActivity(new Intent(this, SanskritKhandActivity.class)));
 
-        cardRate.setOnClickListener(v -> {
-            rateApp();
-        });
+        findViewById(R.id.cardRate).setOnClickListener(v -> rateApp());
 
-
-
+        // ✅ Correct Edge-to-Edge Insets (apply to ScrollView)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+            );
             return insets;
         });
     }
 
-
     @SuppressLint("GestureBackNavigation")
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed();
-            finish();   // Exit the app
-            return;
+            finish();
         } else {
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            backPressedTime = System.currentTimeMillis();
         }
-
-        backPressedTime = System.currentTimeMillis();
     }
+
     private void rateApp() {
-        final String appPackageName = getPackageName(); // your app package name
-
+        String appPackageName = getPackageName();
         try {
-            // Open Play Store app
-            startActivity(new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + appPackageName)
-            ));
-        } catch (android.content.ActivityNotFoundException e) {
-            // Open Play Store in browser
-            startActivity(new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)
-            ));
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + appPackageName)));
+        } catch (Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
         }
     }
-
 }
