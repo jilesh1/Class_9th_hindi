@@ -1,9 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:background="@drawable/blue_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    android:clickable="false"
+    android:focusable="false"
+
+    android:background="@drawable/gradient_card_gadya">
 
     <TextView
         android:id="@+id/textItem"

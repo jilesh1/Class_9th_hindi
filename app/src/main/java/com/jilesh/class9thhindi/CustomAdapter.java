@@ -1,4 +1,5 @@
 package com.jilesh.class9thhindi;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,13 @@ public class CustomAdapter extends BaseAdapter {
 
     Context context;
     String[] data;
+    private String bgType;   // ✅ Step 2 (ADD HERE)
 
-    public CustomAdapter(Context context, String[] data) {
+    // ✅ Updated constructor
+    public CustomAdapter(Context context, String[] data, String bgType) {
         this.context = context;
         this.data = data;
+        this.bgType = bgType;   // ✅ store value
     }
 
     @Override
@@ -41,6 +45,18 @@ public class CustomAdapter extends BaseAdapter {
 
         TextView textView = convertView.findViewById(R.id.textItem);
         textView.setText(data[position]);
+
+        // ✅ Apply background based on activity
+        View layout = convertView.findViewById(R.id.rootLayout);
+        // 👆 IMPORTANT: add id in XML (see below)
+
+        if (bgType.equals("gadya")) {
+            layout.setBackgroundResource(R.drawable.gradient_card_gadya);
+        } else if (bgType.equals("kavya")) {
+            layout.setBackgroundResource(R.drawable.gradient_card_kavya);
+        } else if (bgType.equals("sanskrit")) {
+            layout.setBackgroundResource(R.drawable.gradient_card_sanskrit);
+        }
 
         return convertView;
     }

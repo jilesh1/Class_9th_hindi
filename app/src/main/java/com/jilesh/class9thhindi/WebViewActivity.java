@@ -2,12 +2,9 @@ package com.jilesh.class9thhindi;
 
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class WebViewActivity extends AppCompatActivity {
 
@@ -19,14 +16,18 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_webview);
 
         webView = findViewById(R.id.webView);
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
 
 
+        webView.setWebViewClient(new WebViewClient());
+
         String htmlFile = getIntent().getStringExtra("html");
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/" + htmlFile);
+        if (htmlFile != null) {
+            webView.loadUrl("file:///android_asset/" + htmlFile);
+        }
     }
 }

@@ -1,1 +1,634 @@
-<?xml version="1.0" encoding="utf-8"?> <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#121212" tools:context=".MainActivity"> <TextView android:id="@+id/textView" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#1F1F1F" android:padding="16dp" android:text="9th Class Hindi Books" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" /> <!-- Image Slider --> <com.denzcoskun.imageslider.ImageSlider android:id="@+id/image_slider" android:layout_width="392dp" android:layout_height="200dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView" /> <!-- Grid Layout --> <GridLayout android:layout_marginTop="1dp" android:id="@+id/gridLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:columnCount="2" android:padding="12dp" app:layout_constraintTop_toBottomOf="@id/image_slider" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"> <!-- Card 1 : गद्य-खंड --> <androidx.cardview.widget.CardView android:id="@+id/cardGadya" android:layout_width="0dp" android:layout_height="220dp" android:layout_margin="8dp" android:layout_columnWeight="1" app:cardCornerRadius="12dp" app:cardBackgroundColor="#2C2C2C"> <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center"> <ImageView android:layout_width="64dp" android:layout_height="64dp" android:src="@drawable/ic_book" /> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="गद्य-खंड" android:textColor="#FFFFFF" android:textSize="16sp" /> </LinearLayout> </androidx.cardview.widget.CardView> <!-- Card 2 : काव्य-खंड --> <androidx.cardview.widget.CardView android:id="@+id/cardKavya" android:layout_width="0dp" android:layout_height="220dp" android:layout_margin="8dp" android:layout_columnWeight="1" app:cardCornerRadius="12dp" app:cardBackgroundColor="#2C2C2C"> <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center"> <ImageView android:layout_width="64dp" android:layout_height="64dp" android:src="@drawable/ic_poem" /> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="काव्य-खंड" android:textColor="#FFFFFF" android:textSize="16sp" /> </LinearLayout> </androidx.cardview.widget.CardView> <!-- Card 3 : संस्कृत-खंड --> <androidx.cardview.widget.CardView android:id="@+id/cardSanskrit" android:layout_width="0dp" android:layout_height="220dp" android:layout_margin="8dp" android:layout_columnWeight="1" app:cardCornerRadius="12dp" app:cardBackgroundColor="#2C2C2C"> <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center"> <ImageView android:layout_width="64dp" android:layout_height="64dp" android:src="@drawable/om_book" /> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="संस्कृत-खंड" android:textColor="#FFFFFF" android:textSize="16sp" /> </LinearLayout> </androidx.cardview.widget.CardView> <!-- Card 4 : Rate Us --> <androidx.cardview.widget.CardView android:id="@+id/cardRate" android:layout_width="0dp" android:layout_height="220dp" android:layout_margin="8dp" android:layout_columnWeight="1" app:cardCornerRadius="12dp" app:cardBackgroundColor="#2C2C2C"> <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center"> <ImageView android:layout_width="64dp" android:layout_height="64dp" android:src="@drawable/rate" /> <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Rate us" android:textColor="#FFFFFF" android:textSize="16sp" /> </LinearLayout> </androidx.cardview.widget.CardView> </GridLayout> </androidx.constraintlayout.widget.ConstraintLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:fitsSystemWindows="true">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_surface"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNotification"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="0dp"
+                    app:cornerRadius="19dp"
+                    app:strokeColor="@color/border_subtle"
+                    app:strokeWidth="1dp"
+                    android:backgroundTint="@color/bg_card"
+                    app:icon="@drawable/ic_bell"
+                    app:iconTint="@color/text_muted"
+                    app:iconSize="18dp"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/btnNotification"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/icon_bg_purple">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="📚"
+                            android:textSize="22sp"
+                            android:gravity="center" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="हिंदी पाठ्यपुस्तक"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Class 9 · NCERT"
+                            android:textColor="@color/text_muted"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="80dp">
+
+            <!-- Image Slider -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+            <!-- Section Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="6dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SECTIONS"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.10" />
+
+                <TextView
+                    android:id="@+id/tvViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View all →"
+                   android:visibility="invisible"
+                    android:textColor="@color/accent_purple"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!-- Cards Grid -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <!-- Card 1: गद्य-खंड -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGadya"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="6dp"
+                    android:layout_columnWeight="1"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:strokeWidth="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_card_gadya">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/icon_bg_purple">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="📖"
+                                    android:textSize="22sp"
+                                    android:gravity="center" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="गद्य-खंड"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prose Section"
+                                android:textColor="@color/white_50"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                        <!-- Pill Tag -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:text="9 Chapters"
+                            android:textColor="@color/tag_purple"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.06"
+                            android:background="@drawable/pill_purple"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp" />
+
+                        <!-- Arrow -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/icon_bg_purple">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_arrow_ne"
+                                app:tint="@color/tag_purple" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card 2: काव्य-खंड -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardKavya"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="6dp"
+                    android:layout_columnWeight="1"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:strokeWidth="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_card_kavya">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/icon_bg_green">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="🪷"
+                                    android:textSize="22sp"
+                                    android:gravity="center" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="काव्य-खंड"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Poetry Section"
+                                android:textColor="@color/white_50"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:text="13 Chapters"
+                            android:textColor="@color/tag_green"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.06"
+                            android:background="@drawable/pill_green"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/icon_bg_green">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_arrow_ne"
+                                app:tint="@color/tag_green" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card 3: संस्कृत-खंड -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSanskrit"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="6dp"
+                    android:layout_columnWeight="1"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:strokeWidth="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_card_sanskrit">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/icon_bg_amber">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="🕉️"
+                                    android:textSize="22sp"
+                                    android:gravity="center" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="संस्कृत-खंड"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                 />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sanskrit Section"
+                                android:textColor="@color/white_50"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:text="7 Chapters"
+                            android:textColor="@color/tag_amber"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.06"
+                            android:background="@drawable/pill_amber"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/icon_bg_amber">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_arrow_ne"
+                                app:tint="@color/tag_amber" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card 4: Rate Us -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardRate"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="6dp"
+                    android:layout_columnWeight="1"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:strokeWidth="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_card_rate">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                app:cardCornerRadius="12dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/icon_bg_blue">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="⭐"
+                                    android:textSize="22sp"
+                                    android:gravity="center" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Rate Us"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Share feedback"
+                                android:textColor="@color/white_50"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginBottom="12dp"
+                            android:text="Play Store"
+                            android:textColor="@color/tag_blue"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.06"
+                            android:background="@drawable/pill_blue"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="12dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/icon_bg_blue">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_arrow_ne"
+                                app:tint="@color/tag_blue" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </GridLayout>
+            <LinearLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="30dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- About -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/about_us"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="6dp"
+
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="#1A1A2E"
+                    app:cardElevation="4dp"
+
+                    app:strokeColor="@color/accent_purple"
+                    app:strokeWidth="1dp"
+
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="🧑‍💻 About"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Privacy -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnPrivacy"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="#1A1A2E"
+                    app:cardElevation="4dp"
+
+                    app:strokeColor="@color/accent_purple"
+                    app:strokeWidth="1dp"
+
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="🔒 Privacy"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"/>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <!-- Banner Ad pinned to bottom -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/bg_surface"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+
+
+
+
+<!-- ── Backgrounds ── -->
+<color name="bg_primary">#0E0E12</color>
+<color name="bg_surface">#141419</color>
+<color name="bg_card">#1E1E28</color>
+
+<!-- ── Text ── -->
+<color name="text_primary">#FFFFFF</color>
+<color name="text_muted">#888899</color>
+<color name="white">#FFFFFF</color>
+<color name="white_50">#80FFFFFF</color>
+<color name="white_40">#66FFFFFF</color>
+
+<!-- ── Borders ── -->
+<color name="border_subtle">#2A2A38</color>
+
+<!-- ── Accent ── -->
+<color name="accent_purple">#6C63FF</color>
+
+<!-- ── Card gradients (start / end defined in drawables) ── -->
+
+<!-- Purple (गद्य) -->
+<color name="card_gadya_start">#1C1035</color>
+<color name="card_gadya_end">#2D1A55</color>
+<color name="icon_bg_purple">#33A99FFF</color>
+<color name="tag_purple">#A99FFF</color>
+<color name="pill_bg_purple">#1FA99FFF</color>
+
+<!-- Green (काव्य) -->
+<color name="card_kavya_start">#0D2320</color>
+<color name="card_kavya_end">#0F3B30</color>
+<color name="icon_bg_green">#261DB954</color>
+<color name="tag_green">#6EE09E</color>
+<color name="pill_bg_green">#1A1DB954</color>
+
+<!-- Amber (संस्कृत) -->
+<color name="card_sanskrit_start">#2B1409</color>
+<color name="card_sanskrit_end">#4A2010</color>
+<color name="icon_bg_amber">#26EF7D27</color>
+<color name="tag_amber">#F5A761</color>
+<color name="pill_bg_amber">#1AEF7D27</color>
+
+<!-- Blue (Rate Us) -->
+<color name="card_rate_start">#0E1C2E</color>
+<color name="card_rate_end">#12243E</color>
+<color name="icon_bg_blue">#2638B2E9</color>
+<color name="tag_blue">#72C8F0</color>
+<color name="pill_bg_blue">#1A38B2E9</color>
+
+<!-- Slider overlays -->
+<color name="slider_gadya_start">#FF1A1045</color>
+<color name="slider_gadya_end">#FF6C63FF</color>
+<color name="slider_kavya_start">#FF0D2B1E</color>
+<color name="slider_kavya_end">#FF1DB954</color>
+<color name="slider_sanskrit_start">#FF2B0D1A</color>
+<color name="slider_sanskrit_end">#FFE84393</color>
+
 </resources>
